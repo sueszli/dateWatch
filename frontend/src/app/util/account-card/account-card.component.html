@@ -1,0 +1,24 @@
+<div class="event-card">
+  <div class="event-body" (click)="openDialog()">
+    <div class="center-content event-icon-text-line">
+      <mat-icon aria-hidden="false">perm_identity</mat-icon>
+      {{isOrganizer ?
+      organizerAccount.contactPersonFirstName + ' ' + organizerAccount.contactPersonLastName :
+      participantAccount.nickname}}
+      ({{account.email}})
+    </div>
+
+    <!--
+    Platzhalter für Status von Account (-->
+    <div class="center-content event-icon-text-line">
+      Status:
+      <mat-icon *ngIf="!account.banned" color="accent" aria-hidden="false">done
+      </mat-icon>
+      <mat-icon *ngIf="account.banned" color="warn" aria-hidden="false">block
+      </mat-icon>
+      <mat-icon *ngIf="account.deactivated" color="primary" aria-hidden="false">close
+      </mat-icon>
+
+    </div>
+  </div>
+</div>

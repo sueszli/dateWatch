@@ -1,0 +1,110 @@
+<mat-drawer-container [hasBackdrop]="true" autosize>
+
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-drawer-content>
+      <!-- ==================== HEADER ==================== -->
+      <mat-toolbar class="mat-elevation-z10 space-between">
+        <!-- Menu button -->
+        <button (click)="drawer.toggle()" mat-icon-button type="button">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <!-- Logo -->
+        <div class="logo-container">
+          <div class="vertical-center">
+            <h1>Matches</h1>
+          </div>
+        </div>
+
+        <!-- Profile page -->
+        <div class="icon-width"></div>
+      </mat-toolbar>
+
+      <!-- ================== PAGE CONTENT ================== -->
+      <div class="text-container">
+        <div class="whitespace-small"></div>
+
+        <!-- SEARCH FOR EVENTS -->
+        <form [formGroup]="nickNameForm">
+          <mat-form-field appearance="fill">
+            <mat-label>Search for nickname</mat-label>
+            <input formControlName="nickName" matInput placeholder="Nepomuk">
+          </mat-form-field>
+        </form>
+
+        <!-- SEARCH FOR NICKNAMES -->
+        <mat-form-field>
+          <!-- Input -->
+          <mat-label>Search and select events</mat-label>
+          <input #eventInput [formControl]="eventSearchCtrl" [matAutocomplete]="auto"
+                 [matChipInputFor]="chipList" placeholder="Event name ...">
+
+          <!-- Autocompletion -->
+          <mat-autocomplete #auto="matAutocomplete" (optionSelected)="addChip($event)">
+            <mat-option *ngFor="let title of $titleSuggestions | async" [value]="title">
+              {{title}}
+            </mat-option>
+          </mat-autocomplete>
+          <mat-chip-list #chipList></mat-chip-list>
+        </mat-form-field>
+        <!-- Chips -->
+        <mat-chip (removed)="removeChip(title)" *ngFor="let title of currentlyChosen">
+          {{title}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+
+        <div class="whitespace-small"></div>
+
+        <div *ngFor="let result of resultMatchesArray">
+          <mat-card>
+            <mat-card-title>{{result.eventTitle}}</mat-card-title>
+            <div class="whitespace-xtiny"></div>
+
+            <div *ngFor="let match of result.matches">
+              <mat-card>
+               <mat-card-content>
+                <div id="nickname">{{match.nickname}}</div>
+                <div class="whitespace-xxtiny"></div>
+                <div class="details-container">
+                  <mat-icon>email</mat-icon>
+                  <div><a href="mailto:{{match.email}}">{{match.email}}</a></div>
+                </div>
+                <div *ngIf="match.phone" class="details-container">
+                  <div class="whitespace-xxtiny"></div>
+                  <mat-icon>phone</mat-icon>
+                  <div><a href="tel:{{match.phone}}">{{match.phone}}</a></div>
+                </div>
+                </mat-card-content>
+                <mat-card-actions align="end">
+                  <button mat-button color="warn" (click)="revokeMatch(match.email, match.nickname)">REVOKE</button>
+                </mat-card-actions>
+              </mat-card>
+              <div class="whitespace-tiny"></div>
+            </div>
+
+          </mat-card>
+          <div class="whitespace-small"></div>
+        </div>
+
+        <div *ngIf="resultMatchesArray.length === 0">
+          <mat-card>
+            <mat-card-subtitle>No matches found ...</mat-card-subtitle>
+          </mat-card>
+        </div>
+
+        <div class="whitespace-large"></div>
+
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>

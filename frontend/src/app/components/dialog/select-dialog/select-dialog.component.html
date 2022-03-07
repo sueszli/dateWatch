@@ -1,0 +1,16 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+  <p>{{data.text}}</p>
+  <mat-form-field appearance="fill">
+    <mat-label>{{data.label}}</mat-label>
+    <mat-select [(value)]="data.enteredString">
+      <mat-option *ngFor="let option of data.options" [value]="option">
+        {{option}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.enteredString">Enter</button>
+</div>

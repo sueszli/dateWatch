@@ -1,0 +1,21 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/drawer";
+@import "~src/styles/custom-buttons";
+
+// ================ just as in the Login component ================
+.form-container {
+  margin: 0 auto;
+  width: 85%;
+  max-width: 300px;
+
+  form mat-form-field {
+    width: 100%;
+  }
+}
+
+// search button
+.search-button {
+  width: 75%;
+}

@@ -1,0 +1,46 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/custom-buttons";
+@import "~src/styles/drawer";
+
+
+// reset for some elements
+h3,
+.subcard,
+.description {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+// spacing for content
+mat-card div {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+
+  margin-bottom: 0.5rem;
+  margin-left: 1.5rem;
+
+  mat-icon {
+    margin-right: 2rem;
+  }
+}
+.invitetoken {
+  margin-left: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+// descrition
+.description {
+  margin-left: 1rem !important;
+}
+
+// background color for the selected group
+.highlighted-mat-card {
+  background-color: $mat-primary;
+}
+
+#post-statistics{
+  margin: 1rem;
+}

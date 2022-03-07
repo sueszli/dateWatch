@@ -1,0 +1,85 @@
+<div class="whitespace-small"></div>
+
+<div class="drawer-text">
+  <h1>Menu</h1>
+  <p>What are you up to, {{name}}?</p>
+</div>
+
+<mat-divider></mat-divider>
+
+<mat-action-list>
+  <button mat-list-item routerLink="/main" routerLinkActive="active">
+    <mat-icon>home</mat-icon>
+    Home
+  </button>
+</mat-action-list>
+
+<!-- ORGANIZER MENU -->
+<div *ngIf="organizer">
+  <mat-action-list>
+    <button mat-list-item routerLink="/feedback" routerLinkActive="active">
+      <mat-icon>volunteer_activism</mat-icon>
+      Feedback
+    </button>
+  </mat-action-list>
+
+  <mat-action-list>
+    <button mat-list-item routerLink="/event/filter/organized" routerLinkActive="active">
+      <mat-icon>date_range</mat-icon>
+      My Events
+    </button>
+  </mat-action-list>
+
+  <mat-action-list>
+    <button mat-list-item routerLink="/event/create" routerLinkActive="active">
+      <mat-icon>edit_calendar</mat-icon>
+      Create an Event
+    </button>
+  </mat-action-list>
+</div>
+
+<!-- PARTICIPANT MENU -->
+<div *ngIf="participant">
+  <mat-action-list>
+    <button mat-list-item routerLink="/matches" routerLinkActive="active">
+      <mat-icon>favorite_border</mat-icon>
+      Matches
+    </button>
+  </mat-action-list>
+
+  <!-- <mat-action-list>
+      <button mat-list-item routerLink="/main" routerLinkActive="active">
+          <mat-icon>code</mat-icon>
+          Event Invite Code
+      </button>
+  </mat-action-list> -->
+
+  <mat-action-list>
+    <button mat-list-item routerLink="/event/filter/planned" routerLinkActive="active">
+      <mat-icon>event_available</mat-icon>
+      Planned Events
+    </button>
+  </mat-action-list>
+
+  <mat-action-list>
+    <button mat-list-item routerLink="/event/filter/visited" routerLinkActive="active">
+      <mat-icon>event_repeat</mat-icon>
+      Visited Events
+    </button>
+  </mat-action-list>
+
+  <mat-action-list>
+    <button mat-list-item routerLink="/event/filter/explore" routerLinkActive="active">
+      <mat-icon>calendar_today</mat-icon>
+      Explore Events
+    </button>
+  </mat-action-list>
+</div>
+
+<!-- LOGOUT BUTTON -->
+<div class="logout center-content">
+  <!-- stroked button - but this one is an exception -->
+  <button mat-stroked-button color="primary" type="submit" routerLink="/" (click)="authService.logoutUser()">
+    LOG OUT
+  </button>
+</div>

@@ -1,0 +1,230 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <!-- ================== HEADER ================== -->
+    <mat-toolbar class="mat-elevation-z10 space-between">
+      <button (click)="drawer.toggle()" mat-icon-button type="button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <h1>Create an Event</h1>
+
+      <div class="icon-width"></div>
+    </mat-toolbar>
+
+    <!-- ================== PAGE CONTENT ================== -->
+    <div class="whitespace-small"></div>
+
+    <div class="form-container">
+      <form (ngSubmit)="onCreateEventFormSubmit()" [formGroup]="eventCreationForm">
+
+        <div class="whitespace-tiny"></div>
+        <h4>Title and description:</h4>
+
+        <!-- TITLE -->
+        <mat-form-field>
+          <mat-label>Title</mat-label>
+          <input formControlName="title" matInput placeholder="My first speed-date" required>
+          <mat-icon matSuffix>create</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['title'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <!-- DESCRIPTION -->
+        <mat-form-field>
+          <mat-label>Description</mat-label>
+          <textarea formControlName="description" matInput
+                    placeholder="Please enter all information which you want to share with the participants." required></textarea>
+          <mat-icon matSuffix>description</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['description'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-small"></div>
+        <h4>Time, date and duration:</h4>
+
+        <!-- START DATE AND TIME -->
+        <mat-form-field>
+          <mat-label>Start date and time</mat-label>
+          <input [min]="today" [ngxMatDatetimePicker]="picker" formControlName="startDateAndTime"
+                 matInput placeholder="Choose a date & time">
+          <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker #picker [defaultTime]="[12,0,0]" [enableMeridian]="false" [showSeconds]="false"
+                                   [stepMinute]="15"></ngx-mat-datetime-picker>
+          <mat-error *ngIf="eventCreationForm.controls['startDateAndTime'].errors?.required"> {{formErrors.required}}
+          </mat-error>
+          <mat-error *ngIf="eventCreationForm.controls['startDateAndTime'].errors?.min"> {{formErrors.dateMin}}
+          </mat-error>
+        </mat-form-field>
+
+        <!-- DURATION IN HOURS  -->
+        <mat-form-field>
+          <mat-label>Duration in hours</mat-label>
+          <input formControlName="durationInHours" matInput placeholder="1" required type="number">
+          <mat-icon matSuffix>timer</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['durationInHours'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <!-- DURATION: MINUTES  -->
+        <mat-form-field>
+          <mat-label>Duration in minutes</mat-label>
+          <input formControlName="durationInMinutes" matInput placeholder="0" required type="number">
+          <mat-icon matSuffix>timer</mat-icon>
+          <mat-error
+            *ngIf="eventCreationForm.controls['durationInMinutes'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <!-- ROUND DURATION: SECONDS  -->
+        <mat-form-field>
+          <mat-label>Round duration in seconds</mat-label>
+          <input matInput type="number" placeholder="0" required formControlName="roundDurationInSeconds">
+          <mat-icon matSuffix>timer</mat-icon>
+          <mat-error
+            *ngIf="eventCreationForm.controls['roundDurationInSeconds'].errors?.required"> {{formErrors.required}} </mat-error>
+          <mat-error
+            *ngIf="eventCreationForm.controls['roundDurationInSeconds'].errors?.min"> Round duration must be positive </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-small"></div>
+        <h4>Address:</h4>
+
+        <!-- LOCATION: STREET  -->
+        <mat-form-field>
+          <mat-label>Street</mat-label>
+          <input formControlName="street" matInput
+                 placeholder="Please enter all information which you want to share with the participants." required>
+          <mat-icon matSuffix>location_on</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['street'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <!-- LOCATION: POSTCODE  -->
+        <mat-form-field>
+          <mat-label>Postcode</mat-label>
+          <input formControlName="postcode" matInput
+                 placeholder="Please enter all information which you want to share with the participants." required>
+          <mat-icon matSuffix>location_on</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['postcode'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <!-- LOCATION: CITY  -->
+        <mat-form-field>
+          <mat-label>City</mat-label>
+          <input formControlName="city" matInput
+                 placeholder="Please enter all information which you want to share with the participants." required>
+          <mat-icon matSuffix>location_on</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['city'].errors"> {{formErrors.required}} </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-small"></div>
+        <h4>Max. number of participants:</h4>
+
+        <!-- NUM OF PARTICIPANTS  -->
+        <mat-form-field>
+          <mat-label>Number of possible participants</mat-label>
+          <input formControlName="maxParticipants" matInput placeholder="10" required type="number">
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error *ngIf="eventCreationForm.controls['maxParticipants'].errors?.notEven"> This number must be even.
+          </mat-error>
+          <mat-error *ngIf="eventCreationForm.controls['maxParticipants'].errors?.required"> {{formErrors.required}}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-small"></div>
+        <mat-divider></mat-divider>
+        <div class="whitespace-tiny"></div>
+
+        <!-- OPTIONS: EVERYONE DATES EVERYONE vs GROUPS-->
+        <mat-radio-group (ngModelChange)="changeGroupsExist()" [(ngModel)]="groupsExist" [ngModelOptions]="{standalone: true}"
+                         aria-label="Select an option" class="vertical-container">
+          <mat-radio-button [value]="true">Use groups</mat-radio-button>
+          <mat-radio-button [value]="false">Everyone dates everyone</mat-radio-button>
+        </mat-radio-group>
+
+        <!-- GROUPS -->
+        <div *ngIf="groupsExist">
+          <div formGroupName="groups">
+
+            <!-- TITLE FIRST GROUP -->
+            <div formGroupName="firstGroup">
+
+              <div class="whitespace-small"></div>
+              <h4>Configure first group:</h4>
+
+              <mat-form-field>
+                <mat-label>Title of first group</mat-label>
+                <input formControlName="title" matInput placeholder="Male" required>
+                <mat-icon matSuffix>create</mat-icon>
+                <mat-error> {{formErrors.required}} </mat-error>
+              </mat-form-field>
+
+              <!-- DESCRIPTION FIRST GROUP -->
+              <mat-form-field>
+                <mat-label>Description of first group</mat-label>
+                <textarea formControlName="description" matInput placeholder="Group of all males."
+                          required></textarea>
+                <mat-icon matSuffix>description</mat-icon>
+                <mat-error> {{formErrors.required}} </mat-error>
+              </mat-form-field>
+            </div>
+
+            <div formGroupName="secondGroup">
+
+              <div class="whitespace-small"></div>
+              <h4>Configure second group:</h4>
+
+              <!-- TITLE SECOND GROUP -->
+              <mat-form-field>
+                <mat-label>Title of second group</mat-label>
+                <input formControlName="title" matInput placeholder="Female" required>
+                <mat-icon matSuffix>create</mat-icon>
+                <mat-error> {{formErrors.required}} </mat-error>
+              </mat-form-field>
+
+              <!-- DESCRIPTION SECOND GROUP -->
+              <mat-form-field>
+                <mat-label>Description of second group</mat-label>
+                <textarea formControlName="description" matInput placeholder="Group of all females."
+                          required></textarea>
+                <mat-icon matSuffix>description</mat-icon>
+                <mat-error> {{formErrors.required}} </mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+
+        <div class="whitespace-small"></div>
+        <mat-divider></mat-divider>
+        <div class="whitespace-small"></div>
+
+        <!-- OPTIONS: PRIVATE VS PUBLIC-->
+        <mat-radio-group aria-label="Select an option" class="vertical-container" formControlName="public">
+          <mat-radio-button [value]="false">
+            Private
+          </mat-radio-button>
+          <p>Event only accessible via an invite code.</p>
+          <mat-radio-button [value]="true">
+            Public
+          </mat-radio-button>
+          <p>Event displayed in a public list.</p>
+        </mat-radio-group>
+
+        <div class="whitespace-medium"></div>
+
+
+        <!-- SUBMIT BUTTON-->
+        <div class="center-content">
+          <button [disabled]="!eventCreationForm.valid" class="stroked submission-button" color="primary"
+                  mat-stroked-button type="submit">Create Event
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="whitespace-medium"></div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

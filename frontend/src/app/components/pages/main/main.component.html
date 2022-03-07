@@ -1,0 +1,111 @@
+<mat-drawer-container [hasBackdrop]="true" autosize>
+
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <!-- ==================== PAGE CONTENT ====================   -->
+    <mat-drawer-content>
+      <!-- HEADER -->
+      <mat-toolbar class="mat-elevation-z10 space-between">
+        <!-- Menu button -->
+        <button (click)="drawer.toggle()" mat-icon-button type="button">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <!-- Logo -->
+        <div class="logo-container">
+          <img alt="Logo" src="../../../../assets/LOGO.svg">
+          <div class="vertical-center">
+            <h1>DateWatch</h1>
+          </div>
+        </div>
+
+        <!-- Profile page -->
+        <button mat-icon-button routerLink="/profile">
+          <mat-icon>manage_accounts</mat-icon>
+        </button>
+      </mat-toolbar>
+
+      <!-- ================== PAGE CONTENT ================== -->
+      <div class="whitespace-small"></div>
+
+      <div *ngIf="userRole.includes(roles.participant)">
+        <div class="center-content">
+          <button (click)="openDialog()" class="invite-code" color="primary"
+                  mat-raised-button>
+            <mat-icon>code</mat-icon>
+            <span>Enter event invite code</span>
+          </button>
+        </div>
+
+        <div class="centered-mat-divider">
+          <mat-divider></mat-divider>
+        </div>
+      </div>
+
+      <div class="text-container">
+        <div *ngIf="userRole.includes(roles.organizer)">
+          <h2 style="margin-bottom: 0.1em">Your planned events</h2>
+
+          <div *ngIf="events?.length">
+            <p>All the good stuff you’re going to host soon</p>
+            <div *ngFor="let e of events" style="margin-top: 1em">
+              <app-event-card [event]="e"></app-event-card>
+            </div>
+          </div>
+
+          <div *ngIf="!events?.length">
+            <br>
+            <p>Wow such empty...</p>
+            <p>Create an event to see it here</p>
+          </div>
+        </div>
+
+        <div *ngIf="userRole.includes(roles.participant)">
+          <h2 style="margin-bottom: 0.1em">Events you will participate in</h2>
+
+          <div *ngIf="confirmedEvents.length > 0">
+            <p>All the good stuff you gonna enjoy</p>
+            <div *ngFor="let e of confirmedEvents" style="margin-top: 1em">
+              <app-event-card [event]="e"></app-event-card>
+            </div>
+          </div>
+
+          <div *ngIf="confirmedEvents.length === 0">
+            <br>
+            <p>Hmm...looks like none of your participation were confirmed at the moment.</p>
+          </div>
+        </div>
+
+        <br>
+
+        <div *ngIf="userRole.includes(roles.participant)">
+          <div class="centered-mat-divider">
+            <mat-divider></mat-divider>
+          </div>
+          <h2 style="margin-bottom: 0.1em">Events you're registered at</h2>
+
+          <div *ngIf="unconfirmedEvents.length > 0">
+            <p>All the good stuff you’ve possibly got ahead of yourself</p>
+            <div *ngFor="let e of unconfirmedEvents" style="margin-top: 1em">
+              <app-event-card [event]="e"></app-event-card>
+            </div>
+          </div>
+
+          <div *ngIf="unconfirmedEvents.length === 0">
+            <br>
+            <p>Wow such empty...</p>
+            <p>Request participation for an event to see it here</p>
+          </div>
+        </div>
+      </div>
+      <br>
+    </mat-drawer-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>

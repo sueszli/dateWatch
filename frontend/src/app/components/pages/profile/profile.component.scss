@@ -1,0 +1,20 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/custom-buttons";
+@import "~src/styles/drawer";
+
+.form-container {
+  margin: 0 auto;
+  width: 85%;
+  max-width: 300px;
+
+  form mat-form-field {
+    width: 100%;
+  }
+}
+
+// submission button
+.save-button {
+  width: 65%;
+  margin-right: 1rem;
+}

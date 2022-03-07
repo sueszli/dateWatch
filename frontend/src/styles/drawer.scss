@@ -1,0 +1,15 @@
+@import "~src/styles/color-palette";
+
+// global styling for drawer / hamburger menu
+mat-drawer {
+    width: 85%;
+}
+
+mat-drawer-content {
+    height: 100vh;
+}
+
+.close-button {
+    color: $muted-button;
+    margin: 0.4rem;
+}

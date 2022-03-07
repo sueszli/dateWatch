@@ -1,0 +1,63 @@
+<div class="centered-container entrance-container">
+  <ng-container *ngIf="!skipIntro">
+    <ng-container *ngIf="!showSummary">
+      <br><br><br><br><br>
+      <header class="big-header">Awesome!</header>
+      <p>You're in.</p>
+      <br>
+      <!-- ToDo: Fix the mat divider -->
+      <div style="width: 100%; display: flex; justify-content: center; padding: 2em">
+        <mat-divider style="width: 80%; "></mat-divider>
+      </div>
+      <br>
+      <p>Do you want a quick summary on how these events work?</p>
+      <br>
+      <div id="aligned-buttons">
+        <button (click)="showSummary = true" color="primary" mat-button>YEAH SURE</button>
+        <button (click)="enterEvent()" color="primary" mat-button>NOPE I'M GOOD</button>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="showSummary">
+      <h1>How it works</h1>
+
+      <p>At the event, you’ll either be seated by
+        the host or have to find a date yourself.</p>
+      <br>
+      <p>Then one of you both has to enter the
+        other persons username into their phone.</p>
+      <br>
+      <p>You then have to wait until the host starts
+        the timer for all participants. </p>
+
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+
+      <p>The timer determines how much time
+        you get on to get to know your date.</p>
+      <br>
+      <p>After the timer runs out - you'll have to
+        decide whether you liked your date.</p>
+
+      <br>
+      <mat-divider></mat-divider>
+      <br>
+
+      <p>After the event you’ll get your matches
+        on this app and get a reminder via mail. </p>
+
+      <div class="centered-container button">
+        <button (click)="enterEvent()" color="primary"
+                mat-button>SOUNDS GOOD
+        </button>
+      </div>
+
+    </ng-container>
+  </ng-container>
+  <ng-container *ngIf="skipIntro">
+    <br><br><br><br><br><br><br>
+    <h1>Please wait</h1>
+    <p>You're in.</p>
+    <p>But the fun hasn’t started - just yet.</p>
+  </ng-container>
+</div>

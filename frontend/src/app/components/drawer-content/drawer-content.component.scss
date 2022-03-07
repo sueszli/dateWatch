@@ -1,0 +1,34 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/drawer";
+
+.drawer-text {
+    margin-left: 1rem;
+
+    h1 {
+        margin: 0;
+        padding: 0;
+    }
+
+    p {
+        color: $muted-button;
+        font-size: 1rem;
+        font-weight: 400;
+    }
+}
+
+mat-action-list button mat-icon {
+    margin-right: 2rem;
+}
+
+.logout {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 1rem;
+
+    button {
+        width: 70%;
+        color: white;
+    }
+}

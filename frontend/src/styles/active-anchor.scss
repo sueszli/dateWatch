@@ -1,0 +1,25 @@
+$anchor-color: #adadad;
+
+a {
+  padding: 0;
+  margin: 0;
+
+  // decoration
+  color: $anchor-color;
+  text-decoration: none;
+  display: inline-block;
+}
+
+a::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 1px;
+  background: $anchor-color;
+  transition: width 0.3s;
+}
+
+a:hover::after {
+  width: 100%;
+  transition: width 0.1s;
+}

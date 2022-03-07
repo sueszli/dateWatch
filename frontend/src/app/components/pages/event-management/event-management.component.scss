@@ -1,0 +1,19 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/custom-buttons";
+@import "~src/styles/drawer";
+
+.management-container {
+  align-items: flex-start;
+  padding: 3em;
+}
+
+.groups {
+  display: flex;
+}
+
+.code {
+  color: white;
+  font-size: 18pt;
+}

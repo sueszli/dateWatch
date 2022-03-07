@@ -1,0 +1,54 @@
+<div class="event-card">
+  <div [routerLink]="'/event/' + event.accessToken" class="contact" style="cursor: pointer">
+    <div style="display: flex">
+<!--      <img alt="logo" src="assets/icon-icx.ico.ico" width="48">-->
+      <div class="contactText">
+        <div class="event-name">{{event.title}}</div>
+        <div *ngIf="organizer" class="event-author">
+          {{organizer.contactPersonFirstName + ' ' + organizer.contactPersonLastName}}</div>
+      </div>
+    </div>
+<!--    <mat-icon>share</mat-icon>-->
+  </div>
+
+  <div class="event-body">
+    <div class="center-content event-icon-text-line">
+      <mat-icon aria-hidden="false">room</mat-icon>
+      {{eventAddress}}
+    </div>
+
+    <div class="center-content event-icon-text-line">
+      <mat-icon aria-hidden="false">date_range</mat-icon>
+      {{event.startDateAndTime | date:"EEEE, dd. MMMM y"}}
+    </div>
+
+    <div class="center-content event-icon-text-line">
+      <mat-icon aria-hidden="false">schedule</mat-icon>
+      {{event.startDateAndTime  | date:"hh:mm"}}
+    </div>
+
+    <div *ngIf="isOngoing && userRole.includes(roles.participant) && participantEvent?.participation?.confirmed"
+         class="center-content button">
+      <button *ngIf="showIamHereButton" [routerLink]="'/event/entrance/' + event.accessToken" class="stroked"
+              color="accent" mat-button>
+        I AM HERE
+      </button>
+    </div>
+
+    <div *ngIf="isOngoing && userRole.includes(roles.organizer)" class="center-content button">
+      <button [disabled]="!event.hasRegistrationClosed"
+              [matTooltip]="event.hasRegistrationClosed? 'Manage event entrances' : 'Registration must be closed first'"
+              [routerLink]="'/event/management/' + event.accessToken" class="stroked" color="primary" mat-button>
+        MANAGE EVENT
+      </button>
+    </div>
+
+    <div *ngIf="isFinished && userRole.includes(roles.organizer)" class="center-content button">
+      <div>EVENT ALREADY FINISHED</div>
+    </div>
+
+    <div *ngIf="isCanceled" class="center-content button">
+      <div id="canceled">EVENT CANCELED</div>
+    </div>
+  </div>
+</div>

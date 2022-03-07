@@ -1,0 +1,44 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/drawer";
+
+// ======================== INPUT FIELD ========================
+mat-form-field {
+    width: 100%;
+}
+
+mat-card-content {
+    margin-left: 1rem;
+}
+
+mat-chip {
+    margin-right: 0.2rem;
+    margin-left: 0.2rem;
+    margin-top: 0.01rem;
+    margin-bottom: 0.2rem;
+}
+
+
+// ======================== LISTING OF MATCHES ========================
+#nickname {
+    color: $mat-accent;
+}
+
+.details-container {
+    margin-left: 0.3rem;
+
+    $mat-icon-size: 1.2rem;
+    mat-icon {
+        display: block !important;
+        margin-right: 0.5rem;
+        font-size: $mat-icon-size;
+        width: $mat-icon-size;
+        height: $mat-icon-size;
+    }
+
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}

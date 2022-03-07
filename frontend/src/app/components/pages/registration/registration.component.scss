@@ -1,0 +1,20 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/custom-buttons";
+
+// center form and set width
+form {
+    padding-top: 2rem;
+    margin: 0 auto;
+    width: 85%;
+    max-width: 300px;
+}
+
+// padding and width
+form mat-form-field {
+    width: 100%;
+}
+
+.register-button {
+    width: 75%;
+}

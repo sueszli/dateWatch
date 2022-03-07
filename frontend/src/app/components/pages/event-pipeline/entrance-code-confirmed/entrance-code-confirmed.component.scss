@@ -1,0 +1,25 @@
+#aligned-buttons {
+  color:blueviolet;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.entrance-container{
+  align-items: flex-start;
+  padding: 3em;
+}
+
+header{
+  margin-bottom: 0.3em;
+}
+
+.mat-divider {
+  border-top-color: white;
+}
+
+.button{
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

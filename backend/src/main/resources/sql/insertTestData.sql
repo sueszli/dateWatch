@@ -1,0 +1,106 @@
+-- Password: 123
+INSERT INTO account (id, email_lowercase, password, verification_token_id, verified, account_type)
+VALUES (-1, 'o@o', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'organizer'),
+       (-2, '2@o', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'organizer'),
+       (-3, '3@o', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'organizer'),
+       (-20, 'p@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-21, '1@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-22, '2@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-23, '3@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-24, '4@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-25, '5@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-26, '6@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-27, '7@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-28, '8@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-29, '9@p', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-30, '10@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-31, '11@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-32, '12@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-33, '13@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-34, '14@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-35, '15@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-36, '16@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant'),
+       (-37, '17@i', '$2a$10$ThGsCw9V5H6t03Q5i5NVCOB9q.j6BCnc2pibQyZfubv3hkbjekXhS', null, true, 'participant');
+
+INSERT INTO account_organizer(id, contact_person_first_name, contact_person_last_name, organization_name)
+VALUES (-1, 'Max', 'Maier', 'Max Foundation'),
+       (-2, 'Mina', 'Meier', null),
+       (-3, 'Moritz', 'Mayer', null);
+
+INSERT INTO account_participant(id, nickname)
+VALUES (-20, 'ruth791'),
+       (-21, 'dima97'),
+       (-22, 'richard139'),
+       (-23, 'jan154'),
+       (-24, 'patrick1650'),
+       (-25, 'tobi2841'),
+       (-26, 'user001'),
+       (-27, 'Single sucht'),
+       (-28, 'music lover 75'),
+       (-29, 'pro_gamer'),
+       (-30, 'Gönner'),
+       (-31, 'vegan lover 97'),
+       (-32, 'Meli5'),
+       (-33, 'Robi.01'),
+       (-34, 'poetry-lover'),
+       (-35, 'guitar hero'),
+       (-36, 'SURFMASTER 9000'),
+       (-37, 'Papa Schlumpf');
+
+INSERT INTO event (id, title, description, start_date_and_time, duration_in_minutes, street, postcode,
+                   city, max_participant, invite_token, entrance_token, organizer_id, group_titlea, group_descriptiona,
+                   group_titleb, group_descriptionb, public_event)
+VALUES (-1, 'BaumDate', 'Treffpunkt beim Baum.', '2022-02-22T10:30:00', 90, 'Wiese', '1020', 'Wien', 10, '45LMVF8', '9R8EVF8', -1, null, null, null, null, true),
+       (-2, 'Date Wunder', 'Treffpunkt am wundervollsten Ort der Stadt. \nDer Adresse folgen und dann noch 3x links!\n Für Bier ist gesorgt!', '2022-08-01T12:30:00', 90, 'Wiener Straße 7', '1010', 'Wien', 8, 'LMW123R', 'AB1123R', -1, 'Group A', 'People from group A do like people from group B.', 'Group B','People from group B do like people from group A.', false),
+       (-3, 'Speeddating Wien', 'genaueres entnehmen Sie vor Ort!', '2022-02-01T10:30:00', 90, 'Wiese', '1020', 'Wien', 12, 'AN234NH', 'AHC65ER', -2, 'Female', 'Women around 30; wants to date men', 'Male', 'Men around 30; wants to date women', false),
+       (-4, 'Vienna Speeddating #1', 'Noch auf der Suche nach Partnern?\nDann bist du hier richtig.\nDas erste Speeddating der Max Foundation!', '2021-12-17T13:00:00', 165,  'Parkallee 175', '1120', 'Wien', 10, 'LGB323R', 'IGH4N48', -1, null, null, null, null, false),
+       (-5, 'Vienna Speeddating #2', 'Noch auf der Suche nach Partnern?\nDann bist du hier richtig.\nDas zweite Speeddating der Max Foundation!', '2022-08-07T18:00:00', 90, 'Parkallee 175', '1120', 'Wien', 10, 'O3W1SBV', 'OK56NK4', -1, 'Group A', 'People from group A do like people from group B.', 'Group B','People from group B do like people from group A.', true),
+       (-6, 'Vienna Speeddating #3', 'Noch auf der Suche nach Partnern?\nDann bist du hier richtig.\nDas dritte Speeddating der Max Foundation!', '2022-09-07T18:00:00', 90, 'Parkallee 175', '1120', 'Wien', 10, '9W1KSBV', 'LKO67RR', -1, null, null, null, null, true),
+       (-7, 'Rendezvous zu Weihnachten im Prater', 'wird noch ergänzt...', '2022-12-24T14:00:00', 90, 'Praterstraße 1', '1050', 'Wien', 40, '9NAJDJ9', 'N3N4KK8', -2, 'Female age 20', 'Women around 20; wants to date a little older women', 'Female age 30', 'Women around 30; wants to date little younger women', true),
+       (-8, 'Speeddate', 'Treffpunkt beim Baum.', '2022-04-12T19:30:00', 90, 'Karlsplatz', '1020', 'Wien', 60, 'AX8Y8XA', '9NKN5J9', -2, null, null, null, null, false),
+       (-9, 'Speeddate2', 'Treffpunkt beim Baum.', '2021-12-17T13:00:00', 90, 'Karlsplatz', '1020', 'Wien', 60, 'AX8Y8XB', '9NKN5A9', -2, null, null, null, null, false),
+       (-10, 'The Forbidden', 'An event not everybody should know about...', timestampadd(minute, -30, now()) , 90, 'Neutral Zone', '1020', 'Wien', 60, 'STTNGIT', 'STTNGET', -1, 'Klingon', 'The Klingons are a humanoid warrior species that originated from the planet QonoS', 'Romulan', 'The Romulans are a humanoid race from the planet Romulus.', false);
+
+
+INSERT INTO interested (id, interest_group, event_id, participant_id)
+VALUES (-1, 'Group B', -2, -21),
+       (-2, 'Group B', -2, -22),
+       (-3, 'Group A', -2, -23),
+       (-4, 'Group A', -2, -24),
+       (-5, 'Female', -3, -21),
+       (-6, 'Male', -3, -22),
+       (-7, 'Female', -3, -23),
+       (-8, 'Male', -3, -24),
+       (-9, 'Female', -3, -25),
+       (-10, 'Female', -3, -26),
+       (-11, 'Male', -3, -27),
+       (-12, 'Male', -3, -28),
+       (-13, 'Female', -3, -29),
+       (-14, 'Male', -3, -30),
+       (-15, 'Female', -3, -31),
+       (-16, 'Male', -3, -32),
+       (-17, 'Female', -3, -33),
+       (-18, 'Male', -3, -34),
+       (-19, 'Female', -3, -35),
+       (-20, 'Female', -3, -36),
+       (-21, 'Female', -3, -37),
+       (-22, 'Group B', -5, -23),
+       (-23, 'Group A', -5, -24),
+       (-24, 'Group B', -5, -25),
+       (-25, null, -6, -25),
+       (-26, 'Female age 20', -7, -27),
+       (-27, 'Female age 20', -7, -28),
+       (-28, 'Female age 20', -7, -29),
+       (-29, 'Female age 30', -7, -30),
+       (-30, 'Female age 30', -7, -31),
+       (-31, 'Female age 20', -7, -32),
+       (-32, null,-9,-20)
+;
+
+INSERT INTO participation (id, interest_group, event_id, participant_id)
+VALUES (-1, null, -4, -28),
+       (-2, null, -4, -29),
+       (-3, null, -4, -30),
+       (-4, null, -4, -31),
+       (-5, null, -1, -20),
+       (-32, null,-9,-20);

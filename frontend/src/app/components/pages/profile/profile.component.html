@@ -1,0 +1,134 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="over">
+    <button class="close-button" type="button" mat-icon-button (click)="drawer.toggle()">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <!-- ================== HEADER ================== -->
+    <mat-toolbar class="mat-elevation-z10 space-between">
+      <button type="button" mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <h1>My Profile</h1>
+
+
+      <button mat-icon-button (click)="toggleEditButton()">
+        <mat-icon *ngIf="!editEnabled">edit</mat-icon>
+        <mat-icon *ngIf="editEnabled">close</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- ================== PAGE CONTENT ================== -->
+    <div class="whitespace-medium"></div>
+
+    <div class="form-container">
+      <form [formGroup]="editForm" (ngSubmit)="onFormSubmit()">
+
+        <!-- Both: Email -->
+        <div>
+          <mat-form-field>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="organizer@example.org" required formControlName="email"
+                   [formControl]="emailControl">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="editForm.controls['email'].errors?.required"> {{formErrors.required}} </mat-error>
+            <mat-error *ngIf="editForm.controls['email'].errors?.email"> {{formErrors.email}} </mat-error>
+            <mat-error *ngIf="editForm.controls['email'].errors?.taken"> {{formErrors.emailAlreadyTaken}} </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Organizer: Name -->
+        <div *ngIf="accountType==='organizer'? !editEnabled : true">
+          <mat-form-field>
+            <mat-label>Name</mat-label>
+            <input matInput required [formControl]="nameControl">
+            <mat-icon matSuffix>account_circle</mat-icon>
+            <mat-error *ngIf="editForm.controls['name'].errors"> {{formErrors.required}} </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!-- Participant: Phone number -->
+        <ng-template [ngIf]="accountType==='participant'">
+          <div>
+            <mat-form-field>
+              <mat-label>Phone number</mat-label>
+              <input matInput type="tel" placeholder="+43 120 1234567" [formControl]="phoneControl">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="
+                      phoneControl.errors?.phone ||
+                      phoneControl.errors?.minlength ||
+                      phoneControl.errors?.maxlength ||
+                      phoneControl.errors?.pattern">
+                {{formErrors.phoneWrongFormat}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </ng-template>
+
+        <!-- Organizer: First Name, Last Name, Organization Name -->
+        <ng-template [ngIf]="accountType==='organizer'">
+          <div *ngIf="editEnabled">
+            <mat-form-field>
+              <mat-label>First Name</mat-label>
+              <input matInput required [formControl]="firstNameControl">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error
+                *ngIf="editForm.controls['contactPersonFirstName'].errors"> {{formErrors.required}} </mat-error>
+            </mat-form-field>
+          </div>
+          <div *ngIf="editEnabled">
+            <mat-form-field>
+              <mat-label>Last Name</mat-label>
+              <input matInput required [formControl]="lastNameControl">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf="editForm.controls['contactPersonLastName'].errors"> {{formErrors.required}} </mat-error>
+            </mat-form-field>
+          </div>
+          <div>
+            <mat-form-field>
+              <mat-label>Organization Name</mat-label>
+              <input matInput [formControl]="orgControl">
+              <mat-icon matSuffix>account_circle</mat-icon>
+            </mat-form-field>
+          </div>
+        </ng-template>
+
+        <div class="whitespace-small"></div>
+
+        <!-- Both: Save button (if edit mode) -->
+        <div *ngIf="editEnabled" class="center-content">
+          <button class="save-button stroked" mat-stroked-button *ngIf="!editForm.disabled" [disabled]="!editForm.valid"
+                  type='submit'>
+            SAVE CHANGES
+          </button>
+        </div>
+
+      </form>
+
+      <div class="whitespace-medium"></div>
+
+      <div class="center-content">
+        <button class="stroked" mat-stroked-button (click)="changePassword()">
+          Change password
+        </button>
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <div class="center-content">
+        <button class="stroked" mat-stroked-button *ngIf="accountType==='organizer'" (click)="deactivateAccount()">
+          Deactivate account
+        </button>
+        <button class="stroked" mat-stroked-button *ngIf="accountType==='participant'" (click)="deleteAccount()">
+          Delete account
+        </button>
+      </div>
+
+    </div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

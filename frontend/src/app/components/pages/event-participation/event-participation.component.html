@@ -1,0 +1,56 @@
+<div class="centered-container participation-container">
+  <div class="centered-container">
+    <h1>{{event?.title}}</h1>
+  </div>
+  <ng-container *ngIf="!closed">
+    <ng-container *ngIf="waitingBlock">
+      <h1>Please wait</h1>
+      <p>The organizer might need some time to prepare the next round.</p>
+    </ng-container>
+    <ng-container *ngIf="pairingBlock">
+      <ng-container *ngIf="!paired">
+        <p>Your Pairing Token: {{pairingToken}}</p>
+        <mat-form-field>
+          <mat-label>Other Person's Pairing Token</mat-label>
+          <input [(ngModel)]="otherPersonsPairingToken" matInput placeholder="STTNGDS">
+        </mat-form-field>
+        <button (click)="sendPairingToken(otherPersonsPairingToken)" [disabled]="!otherPersonsPairingToken"
+                color="primary"
+                mat-button>Enter
+        </button>
+      </ng-container>
+      <div *ngIf="paired" class="text-center">
+        Your partner is <b>{{otherPersonsNickname}}</b>.
+        <div class="whitespace-tiny"></div>
+        If this is a mistake you can leave your current pairing to form a new one afterwards.
+        Otherwise please wait until the organizer starts the round.
+        <div class="whitespace-small"></div>
+        <button (click)="terminatePairing()" color="warn" mat-raised-button>Leave Pairing</button>
+      </div>
+    </ng-container>
+
+    <ng-container *ngIf="roundOngoing">
+      <div class="text-center">
+        {{
+          roundOngoingWithPartner
+            ? 'You now have time to get to know each other a bit.'
+            : 'You do not have a partner right now, please wait until this round ends.'
+        }}
+        <div class="whitespace-small"></div>
+        <mat-progress-spinner [value]="remainingRoundTimeInPercent"
+                              color="accent"
+                              mode="determinate"
+                              style="margin:0 auto;"></mat-progress-spinner>
+        <div class="whitespace-small"></div>
+        <span id="remainingTime"> {{remainingRoundMinutes}} min {{remainingRoundSecondsAfterFullMinute}} s</span>
+      </div>
+    </ng-container>
+  </ng-container>
+  <div *ngIf="closed" class="text-center">
+    The event is already finished, we hope you enjoyed it.
+
+    <div class="whitespace-small"></div>
+
+    <button color="primary" mat-raised-button (click)="openDialog()">Leave</button>
+  </div>
+</div>

@@ -1,0 +1,198 @@
+<app-simple-header [title]="'Sign up'"></app-simple-header>
+<div class="whitespace-tiny"></div>
+
+<mat-tab-group animationDuration="0ms">
+
+  <!-- ======================== REGISTER PARTICIPANT ======================== -->
+  <mat-tab label="Participant">
+    <form [formGroup]="participantRegisterForm" (ngSubmit)="onParticipantFormSubmit()">
+
+      <!-- NICKNAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Nickname</mat-label>
+        <input matInput placeholder="max_mustermann123" required formControlName="nickname">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error *ngIf="participantRegisterForm.controls['nickname'].errors"> {{formErrors.required}} </mat-error>
+      </mat-form-field>
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="organizer@example.org" required formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error
+          *ngIf="participantRegisterForm.controls['email'].errors?.required"> {{formErrors.required}} </mat-error>
+        <mat-error *ngIf="participantRegisterForm.controls['email'].errors?.email"> {{formErrors.email}} </mat-error>
+        <mat-error *ngIf="participantRegisterForm.controls['email'].errors?.taken"> {{formErrors.emailAlreadyTaken}} </mat-error>
+      </mat-form-field>
+
+      <!-- PHONE NUMBER -->
+      <mat-form-field appearance="outline">
+        <mat-label>Mobile Phone Number</mat-label>
+        <input matInput type="tel" placeholder="+43 120 1234567" formControlName="phone">
+        <mat-icon matSuffix>phone</mat-icon>
+        <mat-error *ngIf="
+                  participantRegisterForm.controls['phone'].errors?.phone ||
+                  participantRegisterForm.controls['phone'].errors?.minlength ||
+                  participantRegisterForm.controls['phone'].errors?.maxlength ||
+                  participantRegisterForm.controls['phone'].errors?.pattern">
+          {{formErrors.phoneWrongFormat}}
+        </mat-error>
+      </mat-form-field>
+
+      <div class="whitespace-xtiny"></div>
+
+      <div formGroupName="passwordGroup">
+        <!-- PASSWORD -->
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide" type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error> {{formErrors.password}} </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-xtiny"></div>
+
+        <!-- Confirm password -->
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput [type]="hidePwdConfirm ? 'password' : 'text'" required
+                 formControlName="confirmPassword" [errorStateMatcher]="passwordMatcher">
+          <button mat-icon-button matSuffix (click)="hidePwdConfirm = !hidePwdConfirm"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hidePwdConfirm" type="button">
+            <mat-icon>{{hidePwdConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error> {{formErrors.confirmPassword}} </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <div class="centered-container">
+        <!-- accept terms and conditions -->
+        <div>
+          <mat-checkbox (click)="toggleTermsParticipant()">I agree to the&nbsp;</mat-checkbox>
+          <a style="display: inline-block; transform: translateY(-3.15px)" target="_blank" routerLink="/about"><u>terms
+            and conditions</u></a>
+        </div>
+
+        <div class="whitespace-tiny"></div>
+
+        <!-- REGISTER BUTTON -->
+        <button class="register-button stroked" mat-stroked-button color="primary"
+                [disabled]="!participantRegisterForm.valid  || !acceptedTermsParticipant" type="submit">
+          SIGN UP
+        </button>
+      </div>
+
+    </form>
+  </mat-tab>
+
+
+  <!-- ======================== REGISTER ORGANIZER ======================== -->
+  <mat-tab class="form-container" label="Organizer">
+    <form [formGroup]="organizerRegisterForm" (ngSubmit)="onOrganizerFormSubmit()">
+
+      <!-- ORGANIZATION NAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Organization Name</mat-label>
+        <input matInput placeholder="Example Org." formControlName="organizationName">
+        <mat-icon matSuffix>account_circle</mat-icon>
+      </mat-form-field>
+
+      <!-- FIRST NAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Contact First Name</mat-label>
+        <input matInput placeholder="Max" required formControlName="contactPersonFirstName">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error *ngIf="organizerRegisterForm.controls['contactPersonFirstName'].errors"> {{formErrors.required}}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- LAST NAME -->
+      <mat-form-field appearance="outline">
+        <mat-label>Contact Last Name</mat-label>
+        <input matInput placeholder="Mustermann" required formControlName="contactPersonLastName">
+        <mat-icon matSuffix>account_circle</mat-icon>
+        <mat-error *ngIf="organizerRegisterForm.controls['contactPersonLastName'].errors"> {{formErrors.required}}
+        </mat-error>
+      </mat-form-field>
+
+      <!-- EMAIL -->
+      <mat-form-field appearance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput placeholder="organizer@example.org" required formControlName="email">
+        <mat-icon matSuffix>email</mat-icon>
+        <mat-error
+          *ngIf="organizerRegisterForm.controls['email'].errors?.required"> {{formErrors.required}} </mat-error>
+        <mat-error *ngIf="organizerRegisterForm.controls['email'].errors?.email"> {{formErrors.email}} </mat-error>
+        <mat-error
+          *ngIf="organizerRegisterForm.controls['email'].errors?.taken"> {{formErrors.emailAlreadyTaken}} </mat-error>
+      </mat-form-field>
+
+      <div class="whitespace-xtiny"></div>
+
+      <div formGroupName="passwordGroup">
+        <!-- PASSWORD -->
+        <mat-form-field appearance="outline">
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hide" type="button">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error> {{formErrors.password}} </mat-error>
+        </mat-form-field>
+
+        <div class="whitespace-xtiny"></div>
+
+        <!-- Confirm password -->
+        <mat-form-field appearance="outline">
+          <mat-label>Confirm your password</mat-label>
+          <input matInput [type]="hidePwdConfirm ? 'password' : 'text'" required
+                 formControlName="confirmPassword" [errorStateMatcher]="passwordMatcher">
+          <button mat-icon-button matSuffix (click)="hidePwdConfirm = !hidePwdConfirm"
+                  [attr.aria-label]="'Hide password'"
+                  [attr.aria-pressed]="hidePwdConfirm" type="button">
+            <mat-icon>{{hidePwdConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error> {{formErrors.confirmPassword}} </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <div class="centered-container">
+        <!-- accept terms and conditions -->
+        <div>
+          <mat-checkbox (click)="toggleTermsOrganizer()">I agree to the&nbsp;</mat-checkbox>
+          <a style="display: inline-block; transform: translateY(-3.15px)" target="_blank" routerLink="/about"><u>terms
+            and conditions</u></a>
+        </div>
+
+        <div class="whitespace-tiny"></div>
+
+        <!-- REGISTER BUTTON -->
+        <button class="register-button stroked" mat-stroked-button color="primary"
+                [disabled]="!organizerRegisterForm.valid || !acceptedTermsOrganizer" type="submit">
+          SIGN UP
+        </button>
+
+      </div>
+
+    </form>
+  </mat-tab>
+
+</mat-tab-group>
+
+<div class="whitespace-medium"></div>
+
+<div class="center-content">
+  <p>Already have an account? <a routerLink="/login"><u>Log in</u></a></p>
+</div>
+
+<div class="whitespace-large"></div>

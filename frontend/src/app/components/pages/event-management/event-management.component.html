@@ -1,0 +1,73 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar class="mat-elevation-z10 space-between">
+      <button (click)="drawer.toggle()" mat-icon-button type="button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="logo-container">
+        <h1>{{event?.title}}</h1>
+      </div>
+
+      <div class="icon-width"></div>
+    </mat-toolbar>
+
+    <!-- ================== PAGE CONTENT ================== -->
+    <div class="management-container">
+      <h1>Entrance Code</h1>
+      <p>Almost there!</p>
+
+      <p>Participants must register themselves with the code below first.</p>
+
+      <div *ngIf="event" class="invitetoken center-content">
+        <pre class="code">{{event.entranceToken}}</pre>
+      </div>
+
+      <!-- Max number of participants -->
+      <div>
+        <mat-icon>people</mat-icon>
+        <h3>max. {{event?.maxParticipants}}</h3>
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <!-- Organizer VIEW: Groups (sub-cards) -->
+      <div class="center-content">
+        <h3>Already Joined:</h3>
+      </div>
+
+      <div *ngIf="event && !event.groups" class="center-content">
+        <h3>{{arrivalStatistics.arrivedParticipants}}/{{event.maxParticipants}}</h3>
+      </div>
+
+      <div *ngIf="event && event.groups" class="subcard groups center-content">
+        <mat-card class="mat-elevation-z5">
+          <h3>Group: {{event.groups.firstGroup.title}}</h3>
+          <p class="content">{{arrivalStatistics?.arrivedFirstGroupParticipants}}/{{event.maxParticipants / 2}}</p>
+        </mat-card>
+        <mat-card class="mat-elevation-z5">
+          <h3>Group: {{event.groups.secondGroup.title}}</h3>
+          <p class="content">{{arrivalStatistics?.arrivedSecondGroupParticipants}}/{{event.maxParticipants / 2}}</p>
+        </mat-card>
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <!-- ======================== BUTTON ======================== -->
+      <div class="center-content">
+        <button (click)="startEvent()" class="stroked" color="primary" mat-stroked-button>
+          Start Event
+        </button>
+      </div>
+
+      <div class="whitespace-large"></div>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>

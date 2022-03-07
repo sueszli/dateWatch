@@ -1,0 +1,30 @@
+<mat-drawer-container [hasBackdrop]="true" autosize>
+  <app-simple-header [title]="'Admin Page'"></app-simple-header>
+
+  <div class="whitespace-xtiny"></div>
+
+  <mat-tab-group animationDuration="0ms">
+    <mat-tab label="Participant Accounts">
+      <div *ngFor="let a of participantAccounts" style="margin-top: 1em">
+        <app-account-card [account]="a"></app-account-card>
+      </div>
+    </mat-tab>
+    <mat-tab class="form-container" label="Organizer Accounts">
+      <div *ngFor="let a of organizerAccounts" style="margin-top: 1em">
+        <app-account-card [account]="a"></app-account-card>
+
+      </div>
+    </mat-tab>
+
+  </mat-tab-group>
+
+
+  <!-- LOGOUT BUTTON -->
+  <div class="logout center-content">
+    <!-- stroked button - but this one is an exception -->
+    <button mat-stroked-button color="primary" type="submit" routerLink="/" (click)="authService.logoutUser()">
+      LOG OUT
+    </button>
+  </div>
+
+</mat-drawer-container>

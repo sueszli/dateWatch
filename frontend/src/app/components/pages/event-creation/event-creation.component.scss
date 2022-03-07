@@ -1,0 +1,54 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/custom-buttons";
+@import "~src/styles/drawer";
+
+$total-offset: 0.5rem;
+$description-offset: 1.75rem;
+
+// private vs. public buttons
+mat-radio-group {
+    display: block;
+    margin-left: $total-offset;
+    margin-top: 1rem;
+    
+    // private vs. public button
+    mat-radio-button {
+        display: block;
+        margin-top: 0.5rem;
+    }
+    
+    //description
+    p {
+        color: $muted;
+        margin-left: $description-offset;
+    }
+}
+
+// descriptions
+textarea {
+    height: 4rem !important;
+}
+
+
+// descriptions
+textarea {
+    height: 4rem !important;
+}
+
+
+// ================ just as in the Login component ================ 
+.form-container {
+    margin: 0 auto;
+    width: 85%;
+    max-width: 300px;
+
+    form mat-form-field {
+        width: 100%;
+    }
+}
+
+// submission button
+.submission-button {
+    width: 75%;
+}

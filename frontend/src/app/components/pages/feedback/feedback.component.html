@@ -1,0 +1,60 @@
+<mat-drawer-container [hasBackdrop]="true" autosize class="full-height">
+
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-drawer-content>
+      <!-- ==================== HEADER ==================== -->
+      <mat-toolbar class="mat-elevation-z10 space-between">
+        <!-- Menu button -->
+        <button (click)="drawer.toggle()" mat-icon-button type="button">
+          <mat-icon>menu</mat-icon>
+        </button>
+
+        <!-- Logo -->
+        <div class="logo-container">
+          <div class="vertical-center">
+            <h1>Feedback</h1>
+          </div>
+        </div>
+
+        <!-- Profile page -->
+        <div class="icon-width"></div>
+      </mat-toolbar>
+
+      <!-- ================== PAGE CONTENT ================== -->
+      <div class="text-container">
+        <div class="whitespace-small"></div>
+
+        <div *ngFor="let feedback of sortedFeedback">
+          <mat-card>
+            <mat-card-title>{{feedback.name}}</mat-card-title>
+            <div class="whitespace-xtiny"></div>
+            <mat-card-content *ngFor="let message of feedback.messages">
+              <div>
+                <div id="message">{{message}}</div>
+              </div>
+              <div class="whitespace-xtiny"></div>
+            </mat-card-content>
+          </mat-card>
+          <div class="whitespace-small"></div>
+        </div>
+
+        <div *ngIf="sortedFeedback.length === 0">
+          <mat-card>
+            <mat-card-subtitle>No feedback found ...</mat-card-subtitle>
+          </mat-card>
+        </div>
+
+        <div class="whitespace-large"></div>
+
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-content>
+
+</mat-drawer-container>

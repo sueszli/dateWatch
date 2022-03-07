@@ -1,0 +1,95 @@
+<mat-drawer-container [hasBackdrop]="true" autosize>
+
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <!-- ==================== PAGE CONTENT ====================   -->
+    <!-- HEADER -->
+    <mat-toolbar class="mat-elevation-z10 space-between">
+      <!-- Menu button -->
+      <button (click)="drawer.toggle()" mat-icon-button type="button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <h1>My Events</h1>
+
+      <div class="icon-width"></div>
+    </mat-toolbar>
+
+    <!-- ================== PAGE CONTENT ================== -->
+    <div class="whitespace-small"></div>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Search for specific events</mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="whitespace-xxtiny"></div>
+
+        <div class="form-container">
+          <form (ngSubmit)="onSearch()" [formGroup]="filterForm">
+
+            <h4>Title</h4>
+
+            <!-- TITLE SUBSTRING -->
+            <mat-form-field>
+              <mat-label>Title</mat-label>
+              <input formControlName="titleSubstring" matInput placeholder="funky dates">
+              <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+
+            <div class="whitespace-xtiny"></div>
+            <h4>Date Range</h4>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Date range</mat-label>
+              <mat-date-range-input [rangePicker]="picker">
+                <input matStartDate placeholder="Start date" formControlName="startDateAndTime">
+                <input matEndDate placeholder="End date" formControlName="endDateAndTime">
+              </mat-date-range-input>
+              <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+              <mat-date-range-picker #picker></mat-date-range-picker>
+            </mat-form-field>
+
+            <div class="whitespace-xtiny"></div>
+            <h4>City</h4>
+
+            <!-- CITY SUBSTRING -->
+            <mat-form-field>
+              <mat-label>City</mat-label>
+              <input formControlName="citySubstring" matInput placeholder="Vienna">
+              <mat-icon matSuffix>create</mat-icon>
+            </mat-form-field>
+
+            <div class="whitespace-xxtiny"></div>
+          </form>
+        </div>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <div class="whitespace-tiny"></div>
+
+    <div *ngIf="events?.length" class="text-container">
+      <div *ngFor="let e of events">
+        <div class="whitespace-tiny"></div>
+        <app-event-card [event]="e" [showIamHereButton]="e.isOngoing"></app-event-card>
+      </div>
+    </div>
+
+    <div *ngIf="events?.length === 0">
+      <mat-card>
+        <mat-card-subtitle>No events found ...</mat-card-subtitle>
+      </mat-card>
+    </div>
+
+    <div class="whitespace-medium"></div>
+
+  </mat-drawer-content>
+
+</mat-drawer-container>

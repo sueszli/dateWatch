@@ -1,0 +1,138 @@
+@use "@angular/material" as mat;
+@include mat.core(); // necessary for material CDK
+// see: https://github.com/scttcper/ngx-toastr
+// for custom toasts see: https://stackblitz.com/edit/ngx-toastr-custom?file=app%2Fcustom-toast%2Fcustom-toast.component.css
+@import "~ngx-toastr/toastr";
+@import "~bootstrap/scss/bootstrap";
+
+@import "~src/styles/color-palette";
+@import "~src/styles/color-palette"; //material color palette
+@import "~src/styles/whitespace";
+
+@import "styles/center";
+// ======================== RESPONSIVENESS ========================
+// used in material-2 figma
+$material2: 360px;
+
+// bootstrap breakpoints
+$breakpoint-small: 567px; //>= 567 (if smaller, then 'extra-small')
+$breakpoint-medium: 768px; //>= 768
+$breakpoint-large: 992px; //>= 992
+$breakpoint-extra-large: 1200px; //>= 1200
+
+// chrome breakpoints
+$mobile-s: 320px;
+$mobile-m: 375px;
+$mobile-l: 435px;
+
+// width of google pixel2-xl
+$pixel2-xl: 411px;
+
+//mobile look in desktop
+html {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
+  max-width: $mobile-l; // <-----
+}
+
+// ======================== GLOBAL STYLING AND CONFIGURATION ========================
+// global reset
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  // hide scrollbar
+  &::-webkit-scrollbar {
+    display: none !important;
+  }
+}
+body {
+  height: 100%;
+}
+
+// center material tabs
+.mat-tab-labels {
+  justify-content: center;
+}
+
+// same color for anchors
+a {
+  color: inherit;
+
+  &:hover {
+    color: $mat-accent;
+  }
+}
+
+// No background-color change for form fields in chrome
+// see: https://stackoverflow.com/questions/2781549/removing-input-background-colour-for-chrome-autocomplete%5D
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+.mat-form-field.mat-focused {
+  .mat-input-element {
+    color: white !important;
+  }
+}
+
+// ngx toastr
+// see: https://github.com/scttcper/ngx-toastr/blob/master/src/lib/toastr.css#L130
+// see: https://stackoverflow.com/questions/59316617/customise-ngx-toastr-in-angular-6-with-typescript
+.toast-title {
+  padding-left: 1rem !important;
+  font-weight: 400 !important;
+}
+.toast-message {
+  padding-left: 1rem !important;
+  font-weight: 200 !important;
+  font-size: smaller !important;
+}
+.toast-close-button {
+  text-shadow: none !important; // no shadow on close button
+}
+.toast-container .toast {
+  box-shadow: none !important;
+}
+.toast-container .ngx-toastr {
+  box-shadow: none !important;
+  color: white !important; // text color
+}
+.toast-container .ngx-toastr:hover {
+  box-shadow: none !important;
+  cursor: pointer;
+}
+
+// Set color of forms to white when focuessed
+// see: https://www.codegrepper.com/code-examples/whatever/mat-form-field+css
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: white !important;
+  // color: $mat-primary-v6 !important;
+}
+
+// remove arrow spinners
+input::-webkit-outer-spin-button, /* Chrome, Safari, Edge, Opera */
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  /* Firefox */
+  -moz-appearance: textfield;
+}
+
+.cdk-overlay-pane.admin-dialog {
+  position: relative!important;
+}
+.close.mat-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px;
+  line-height: 14px;
+  min-width: auto;
+}

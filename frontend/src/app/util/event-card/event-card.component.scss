@@ -1,0 +1,67 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/drawer";
+
+.event-container {
+  justify-content: flex-start;
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.contact {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contactText {
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 1em;
+}
+
+.event-icon-text-line {
+  padding: 0.5em;
+  display: flex;
+  align-items: center;
+}
+
+.event-name {
+  font-size: initial;
+  padding-bottom: 0.3em;
+}
+
+.event-author {
+  font-weight: 100;
+  color: hsl(0deg 0% 100% / 60%);
+}
+
+.event-body {
+  margin-top: 1em;
+  color: gray;
+  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.event-card {
+  padding: 1em;
+  background-color: hsl(0deg 0% 100% / 5%);
+  border-radius: 0.5em;
+}
+
+.event-icon-text-line mat-icon {
+  margin-right: 0.5em;
+}
+
+.button {
+  width: 100%;
+}
+
+#canceled {
+  color: $mat-warn;
+}

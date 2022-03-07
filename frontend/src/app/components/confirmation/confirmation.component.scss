@@ -1,0 +1,19 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+
+.success-header {
+    color: $mat-accent;
+}
+
+.failure-header {
+    color: $mat-warn;
+}
+
+.vertical-container {
+    padding-left: 10vw;
+}
+
+.absolute-bottom-container {
+    color: $muted;
+}

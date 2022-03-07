@@ -1,0 +1,33 @@
+<button class="close" mat-button (click)="onCloseClick()">X</button>
+<!-- TITLE -->
+<h1 mat-dialog-title>{{data.name}}</h1>
+
+<!-- CONTENT -->
+<div class="text-container">
+  <ul>
+    <li>Accounttype: {{data.accountType}}</li>
+    <li>Email: {{data.email}}</li>
+    <li>Status:
+      <mat-icon *ngIf="!data.banned" color="accent" aria-hidden="false">done
+      </mat-icon>
+      <mat-icon *ngIf="data.banned" color="warn" aria-hidden="false">block
+      </mat-icon>
+      <mat-icon *ngIf="data.deactivated" color="primary" aria-hidden="false">close
+      </mat-icon>
+    </li>
+    <li *ngIf="data.banned">Ban reason: {{data.banReason}}</li>
+  </ul>
+
+</div>
+
+<div class="whitespace-xtiny"></div>
+
+<!-- ACTIONS -->
+<div>
+  <div class="admin-button">
+    <button *ngIf="data.banned" mat-stroked-button color="accent" [mat-dialog-close]=!data.banned>
+      {{data.buttonTextOne}}</button>
+    <button *ngIf="!data.banned" mat-stroked-button color="warn" [mat-dialog-close]=!data.banned>
+      {{data.buttonTextTwo}}</button>
+  </div>
+</div>

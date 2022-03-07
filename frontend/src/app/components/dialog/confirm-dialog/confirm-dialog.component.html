@@ -1,0 +1,13 @@
+<!-- TITLE -->
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<!-- CONTENT -->
+<div mat-dialog-content>
+  <p>{{data.text}}</p>
+</div>
+
+<!-- ACTIONS -->
+<div mat-dialog-actions>
+  <button mat-button (click)="setFalse()">{{data.buttonTextFalse}}</button>
+  <button mat-button (click)="setTrue()">{{data.buttonTextTrue}}</button>
+</div>

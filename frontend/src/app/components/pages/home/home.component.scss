@@ -1,0 +1,80 @@
+@import "~src/styles/center";
+@import "~src/styles/color-palette";
+@import "~src/styles/whitespace";
+@import "~src/styles/active-anchor";
+
+
+// ================ LOGO ================
+$logo-size: 3rem;
+$logo-spacing: 0.5rem;
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+        filter: invert(1);
+        width: $logo-size;
+        height: $logo-size;
+    }
+
+    h1 {
+        font-size: $logo-size;
+    }
+}
+
+// center logo font vertically
+.vertical-center {
+    display: flex;
+    align-items: center;
+
+    h1 {
+        margin: 0;
+        padding-left: $logo-spacing;
+    }
+}
+
+.quote {
+    padding-top: 0.2rem;
+    font-weight: 200;
+}
+
+
+
+
+
+// ================ LOGIN AND REGISTRATION CARDS ================
+.card-container {
+    display: flex;
+    justify-content: space-between;
+
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    mat-card {
+        width: 48.5%;;
+        height: 30vh;
+        max-height: 200px;
+
+        //text-align: center;
+
+        mat-card-title {
+            display: block;
+            font-size: 2.3rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+        
+        mat-card-subtitle {
+            display: block;
+            font-size: 1rem;
+            padding-top: 0.2rem;
+            font-weight: 300;
+        }
+    }
+}
+
+.card-container mat-card {
+    background-color: $mat-primary;
+}

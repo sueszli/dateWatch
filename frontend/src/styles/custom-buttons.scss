@@ -1,0 +1,6 @@
+@import "~src/styles/color-palette";
+
+// stroked buttons must be lighter to be readable
+.stroked {
+    color: $mat-primary-v6;
+}

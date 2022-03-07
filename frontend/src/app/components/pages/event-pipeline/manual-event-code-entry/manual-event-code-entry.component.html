@@ -1,0 +1,24 @@
+<div class="centered-container entrance-container">
+  <br><br><br>
+  <header class="big-header">Entrance Code</header>
+
+  <p>Almost there!</p>
+
+  <form class="centered-form" [formGroup]="eventCodeForm">
+    <mat-form-field class="example-full-width" appearance="outline">
+      <span matPrefix>
+          <button mat-button mat-icon-button>
+            <mat-icon>code</mat-icon>
+          </button>&nbsp;&nbsp;&nbsp;
+      </span>
+      <mat-label>Enter the code here</mat-label>
+      <input matInput formControlName="eventEntranceID"
+             #joinCode placeholder="0a2b4c" (input)="inputChanged(joinCode.value)">
+      <mat-error
+        *ngIf="eventCodeForm.controls['eventEntranceID'].errors?.required"> {{formErrors.required}} </mat-error>
+    </mat-form-field>
+    <br><br>
+    You can find the entrance code at the event or have to ask the host directly
+
+  </form>
+</div>

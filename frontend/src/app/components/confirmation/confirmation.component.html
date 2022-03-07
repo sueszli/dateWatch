@@ -1,0 +1,28 @@
+<div class="whitespace-xlarge"></div>
+
+<div *ngIf="success" class="vertical-container">
+    <h1 class="success-header">Awesome!</h1>
+    <mat-divider></mat-divider>
+    <div class="whitespace-tiny"></div>
+    <p>You successfully confirmed your account.</p>
+    <p>Now let's get this party started.</p>
+</div>
+
+<div *ngIf="error" class="vertical-container">
+    <h1 class="failure-header">Dangit!</h1>
+    <mat-divider></mat-divider>
+    <div class="whitespace-tiny"></div>
+    <p> Confirming your mail didn't go as planned.</p>
+    <p>Let's try this one more time, shall we?</p>
+</div>
+
+<div class="absolute-bottom-container">
+    <p>You'll be right back home in {{secondsLeft}} seconds.</p>
+</div>
+
+<!-- 
+<h1>Account Confirmation</h1>
+<p>{{ uuid }}</p>
+<p *ngIf="error">{{ error | json }}</p>
+<p *ngIf="success">done!</p>
+-->

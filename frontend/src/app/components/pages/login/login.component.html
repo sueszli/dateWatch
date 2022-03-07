@@ -1,0 +1,41 @@
+<app-simple-header [title]="'Login'"></app-simple-header>
+
+<div class="whitespace-large"></div>
+
+<div class="form-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onFormSubmit()">
+
+    <!-- EMAIL -->
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput placeholder="organizer@example.org" required formControlName="email">
+      <mat-icon matSuffix>email</mat-icon>
+      <mat-error *ngIf="loginForm.controls['email'].errors?.required"> {{formErrors.required}} </mat-error>
+      <mat-error *ngIf="loginForm.controls['email'].errors?.email"> {{formErrors.email}} </mat-error>
+    </mat-form-field>
+
+    <!-- PASSWORD -->
+    <mat-form-field>
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" required formControlName="password">
+      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hide" type="button">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.controls['password'].errors"> {{formErrors.required}} </mat-error>
+    </mat-form-field>
+
+    <!-- LOGIN BUTTON -->
+    <div class="whitespace-xtiny"></div>
+    <div class="centered-container">
+      <button class="login-button stroked" mat-stroked-button color="primary" [disabled]="!loginForm.valid"
+              type="submit">LOGIN
+      </button>
+      <div class="whitespace-medium"></div>
+      <p>Can't log in? <a routerLink="/forgot-password"><u>Forgot Password</u></a></p>
+      <p>Don't have an account yet? <a routerLink="/registration"><u>Register</u></a></p>
+    </div>
+
+  </form>
+
+</div>

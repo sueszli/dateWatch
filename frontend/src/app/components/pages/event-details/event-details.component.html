@@ -1,0 +1,245 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="over">
+    <button (click)="drawer.toggle()" class="close-button" mat-icon-button type="button">
+      <mat-icon>close</mat-icon>
+    </button>
+    <app-drawer-content></app-drawer-content>
+  </mat-drawer>
+
+  <mat-drawer-content>
+    <mat-toolbar class="mat-elevation-z10 space-between">
+      <button (click)="drawer.toggle()" mat-icon-button type="button">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <div class="logo-container">
+        <h1>{{event?.title}}</h1>
+      </div>
+
+      <div class="icon-width" *ngIf="!(event && userRole.includes(roles.organizer) && registrationOpen())"></div>
+      <button mat-icon-button routerLink="/event/update/{{accessToken}}"
+              *ngIf="event && userRole.includes(roles.organizer) && registrationOpen()">
+        <mat-icon>edit</mat-icon>
+      </button>
+    </mat-toolbar>
+
+    <!-- ================== PAGE CONTENT ================== -->
+    <div class="whitespace-small"></div>
+
+    <!-- ================== ACTIVE EVENT ================== -->
+    <div *ngIf="event?.active">
+
+      <mat-card>
+        <div class="whitespace-tiny"></div>
+
+        <!-- Invite Token -->
+        <div *ngIf="userRole.includes(roles.organizer)" class="invitetoken">
+
+          <h3>The invite token for your event: {{organizerEvent?.accessToken}}</h3>
+          <br>
+        </div>
+
+        <!-- Description -->
+        <div *ngFor="let line of event?.description.split('\\n')" class="description">
+
+          <h3>{{line}}</h3>
+        </div>
+
+        <div class="whitespace-tiny"></div>
+
+        <!-- Public/Private event -->
+        <div *ngIf="event?.public" class="publicEvent">
+          <mat-icon>public</mat-icon>
+          <h3>public Event</h3>
+        </div>
+
+        <div *ngIf="!event?.public" class="privateEvent">
+          <mat-icon>lock</mat-icon>
+          <h3>private Event</h3>
+        </div>
+
+        <!-- Host -->
+        <div>
+          <mat-icon>person_pin</mat-icon>
+          <h3>by {{organizer?.contactPersonFirstName}} {{organizer?.contactPersonLastName}}</h3>
+        </div>
+
+        <!-- Location -->
+        <div>
+          <mat-icon>room</mat-icon>
+          <h3>{{event?.street}}, {{event?.postcode}} {{event?.city}}</h3>
+        </div>
+
+        <!-- Event Date -->
+        <div>
+          <mat-icon>event</mat-icon>
+          <h3>{{event?.startDateAndTime | date:"EEEE, dd. MMMM y"}}</h3>
+        </div>
+
+        <!-- Event Time -->
+        <div>
+          <mat-icon>query_builder</mat-icon>
+          <h3>{{event?.startDateAndTime | date:"hh:mm"}}</h3>
+        </div>
+
+        <div>
+          <mat-icon>timer</mat-icon>
+          <h3 *ngIf="event">
+            {{
+            event?.durationInMinutes >= 60
+              ? (math.floor(event?.durationInMinutes / 60) + 'h'
+                + (event?.durationInMinutes % 60 ? ' ' + event?.durationInMinutes % 60 + 'm' : ''))
+              : event?.durationInMinutes + 'm'
+            }}
+          </h3>
+        </div>
+
+        <div *ngIf="userRole.includes(roles.organizer)">
+          <mat-icon>alarm</mat-icon>
+          <h3 *ngIf="event">
+            {{
+            event?.roundDurationInSeconds >= 60
+              ? (math.floor(event?.roundDurationInSeconds / 60) + 'm'
+                + (event?.roundDurationInSeconds % 60 ? ' ' + event?.roundDurationInSeconds % 60 + 's' : ''))
+              : event?.roundDurationInSeconds + 's'
+            }}
+          </h3>
+        </div>
+
+        <!-- Max number of participants -->
+        <div>
+          <mat-icon>people</mat-icon>
+          <h3>max. {{event?.maxParticipants}}</h3>
+        </div>
+
+        <div class="whitespace-small"></div>
+
+        <!-- PARTICIPANT VIEW: Groups (sub-cards) -->
+        <div *ngIf="event?.groups && userRole.includes(roles.participant)" class="subcard">
+          <mat-card
+            [class.highlighted-mat-card]="participantEvent.participation && participantEvent.participation.group === event.groups.firstGroup.title"
+            class="mat-elevation-z5">
+            <h3>{{event.groups.firstGroup.title}}</h3>
+            <p class="content">{{event.groups.firstGroup.description}}</p>
+          </mat-card>
+          <mat-card
+            [class.highlighted-mat-card]="participantEvent.participation && participantEvent.participation.group === event.groups.secondGroup.title"
+            class="mat-elevation-z5">
+            <h3>{{event.groups.secondGroup.title}}</h3>
+            <p class="content">{{event.groups.secondGroup.description}}</p>
+          </mat-card>
+        </div>
+
+        <!-- ORGANIZER VIEW: Groups (sub-cards) -->
+        <div *ngIf="event?.groups && userRole.includes(roles.organizer)" class="subcard">
+          <mat-card class="mat-elevation-z5">
+            <h3>{{event.groups.firstGroup.title}}</h3>
+            <p class="content">{{event.groups.firstGroup.description}}</p>
+            <p>{{event.groups.firstGroup.numberOfRegistrations}}/{{event?.maxParticipants / 2}} will take part</p>
+          </mat-card>
+          <mat-card class="mat-elevation-z5">
+            <h3>{{event.groups.secondGroup.title}}</h3>
+            <p class="content">{{event.groups.secondGroup.description}}</p>
+            <p>{{event.groups.secondGroup.numberOfRegistrations}}/{{event?.maxParticipants / 2}} will take part</p>
+          </mat-card>
+        </div>
+
+        <div class="whitespace-tiny"></div>
+
+        <!-- ORGANIZER VIEW: Interested People -->
+        <div class="center-content">
+          <p *ngIf="!event?.groups && userRole.includes(roles.organizer)">
+            Interested people: {{event?.numberOfRegistrations}}
+          </p>
+        </div>
+
+        <div class="whitespace-tiny"></div>
+      </mat-card>
+
+      <div class="whitespace-small"></div>
+
+      <!-- ======================== BUTTON ======================== -->
+      <div class="centered-container" *ngIf="!isFinished">
+
+        <div *ngIf="event && event?.hasRegistrationClosed">
+          <p>Event-registration is already closed!</p>
+        </div>
+
+        <!-- Button for Participant -->
+        <div *ngIf="userRole.includes(roles.participant)" class="centered-container">
+          <button (click)="register()" *ngIf="event && !event?.hasRegistrationClosed && !participantEvent.participation"
+                  class="stroked"
+                  color="primary"
+                  mat-stroked-button>
+            Register
+          </button>
+          <ng-container>
+            <p *ngIf="participantEvent?.participation?.registered">You are already registered
+              <ng-container *ngIf="participantEvent?.participation?.confirmed"> and confirmed</ng-container>
+              !
+            </p>
+          </ng-container>
+
+          <div class="whitespace-tiny"></div>
+
+          <div>
+            <button (click)="deregister()" *ngIf="event && participantEvent?.participation?.registered" class="stroked"
+                    color="primary"
+                    mat-stroked-button>
+              UNSUBSCRIBE
+            </button>
+          </div>
+        </div>
+
+        <!-- Button for Organizer -->
+        <button (click)="closeRegistration()"
+                *ngIf="event && !event?.hasRegistrationClosed && userRole.includes(roles.organizer)" class="stroked"
+                color="primary"
+                mat-stroked-button>
+          Close Registration
+        </button>
+
+        <div class="whitespace-tiny"></div>
+
+        <button (click)="cancelEvent()"
+                *ngIf="event && userRole.includes(roles.organizer)" class="stroked"
+                color="primary"
+                mat-stroked-button>
+          CANCEL EVENT
+        </button>
+
+        <div class="whitespace-tiny"></div>
+
+
+      </div>
+
+
+
+
+    </div>
+
+    <!-- ================== CANCELED EVENT ================== -->
+
+    <div *ngIf="!event?.active">
+      <mat-card>
+        <p>The event "{{event?.title}}" was canceled.</p>
+      </mat-card>
+    </div>
+
+    <div class="centered-container" *ngIf="isFinished">
+      <p>The event "{{event?.title}}" is already finished.</p>
+    </div>
+
+    <div class="centered-container" id="post-statistics">
+      <button (click)="postStatistics()"
+              *ngIf="event && userRole.includes(roles.organizer) && event.status===25" class="stroked"
+              color="primary"
+              mat-stroked-button>
+        Post statistics
+      </button>
+    </div>
+    
+    <div class="whitespace-large"></div>
+
+  </mat-drawer-content>
+</mat-drawer-container>

@@ -1,0 +1,17 @@
+<!-- TITLE -->
+<h1 mat-dialog-title>Are you sure you want to delete your account?</h1>
+<!-- CONTENT -->
+
+<div class="text-container">
+  <ul>
+    <li>You will be signed out</li>
+    <li>It will not be possible to login again</li>
+  </ul>
+</div>
+
+
+<!-- ACTIONS -->
+<div mat-dialog-actions>
+  <button mat-button (click)="setFalse()">No</button>
+  <button mat-button (click)="setTrue()">Yes</button>
+</div>

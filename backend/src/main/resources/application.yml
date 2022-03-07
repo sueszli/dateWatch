@@ -1,0 +1,100 @@
+logging:
+  file.name: ./log/datewatch.log
+  level:
+    root: INFO
+    at.ac.tuwien.sepm.groupphase.backend: DEBUG
+    org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping: INFO
+
+routes:
+  rest:
+    v1: /api/v1
+
+sse:
+  timeout: 3600000 # 10 hours
+
+spring:
+  datasource:
+    url: jdbc:h2:./database/datewatchdb;AUTO_SERVER=TRUE;
+    driver-class-name: org.h2.Driver
+    username: admin
+    password: password
+  h2:
+    console:
+      enabled: true
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+    # Allows fetching lazy properties outside the original transaction. Although this sounds helpful, the property
+    # is disabled since it breaks the principle of least-astonishment and leads to bad performance. To learn more,
+    # follow this link: https://bit.ly/2LaX9ku
+    open-in-view: false
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: datewatch.test@gmail.com
+    password: sepm!scoo1
+    properties.mail.smtp:
+      starttls:
+        enable: true
+        required: true
+      mail.smtp:
+        auth: true
+        timeout: 5000
+        writetimeout: 5000
+        connectiontimeout: 5000
+  profiles:
+    active: datagen
+
+security:
+  auth:
+    header: Authorization
+    prefix: "Bearer "
+    login-uri: /api/v1/authentication
+  jwt:
+    secret: w9z$C&F)J@McQfTjWnZr4u7x!A%D*G-KaPdRgUkXp2s5v8y/B?E(H+MbQeThVmYq #512-bit encryption key
+    type: JWT
+    issuer: secure-backend
+    audience: secure-app
+    expiration-time: 43200000 # 12 hours in milliseconds
+
+management:
+  server:
+    port: 8080
+  endpoint:
+    shutdown:
+      enabled: true
+    metrics:
+      enabled: true
+    prometheus:
+      enabled: true
+    health:
+      probes:
+        enabled: true
+  endpoints:
+    web:
+      exposure:
+        include:
+          - health
+          - info
+          - shutdown
+          - metrics
+          - env
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+
+---
+spring:
+  config:
+    activate:
+      on-cloud-platform: kubernetes
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+server:
+  shutdown: graceful

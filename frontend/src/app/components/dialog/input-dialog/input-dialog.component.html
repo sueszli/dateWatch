@@ -1,0 +1,17 @@
+<!-- TITLE -->
+<h1 mat-dialog-title>{{data.title}}</h1>
+
+<!-- CONTENT -->
+<div mat-dialog-content>
+  <p>{{data.text}}</p>
+  <mat-form-field appearance="fill">
+    <mat-label>{{data.label}}</mat-label>
+    <input matInput [(ngModel)]="data.enteredString">
+  </mat-form-field>
+</div>
+
+<!-- ACTIONS -->
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">{{data.cancelButton}}</button>
+  <button mat-button [mat-dialog-close]="data.enteredString">{{data.enterButton}}</button>
+</div>

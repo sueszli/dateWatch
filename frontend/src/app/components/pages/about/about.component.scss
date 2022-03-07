@@ -1,0 +1,12 @@
+@import "~src/styles/center";
+@import "src/styles/active-anchor";
+@import "src/styles/whitespace";
+
+ul {
+    padding-left: 2rem;
+}
+
+li {
+    padding-bottom: 0.5rem;
+    list-style-type: circle;
+}

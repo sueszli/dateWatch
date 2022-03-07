@@ -1,0 +1,50 @@
+<div class="centered-container execution-container">
+  <div class="centered-container">
+    <h1>Monitoring {{event?.title}}</h1>
+    <ng-container *ngIf="!closed">
+      <div *ngIf="arrivalStatistics">Present Participants:
+        <b>{{arrivalStatistics.arrivedParticipants ? arrivalStatistics.arrivedParticipants : arrivalStatistics.arrivedFirstGroupParticipants + arrivalStatistics.arrivedSecondGroupParticipants}}</b>
+      </div>
+      <div *ngIf="arrivalStatistics?.arrivedFirstGroupParticipants">Present of Group
+        <i>{{event.groups.firstGroup.title}}</i>: <b>{{arrivalStatistics.arrivedFirstGroupParticipants}}</b></div>
+      <div *ngIf="arrivalStatistics?.arrivedSecondGroupParticipants">Present of Group
+        <i>{{event.groups.secondGroup.title}}</i>: <b>{{arrivalStatistics.arrivedSecondGroupParticipants}}</b></div>
+
+      <div class="whitespace-small"></div>
+
+      <div *ngIf="readyForNewRound">
+        <button (click)="newRound()" color="primary" mat-raised-button>New Round</button>
+      </div>
+
+      <div *ngIf="readyForStart">
+        <div *ngIf="!pairingStatistics">
+          <i>no pairings yet</i>
+        </div>
+        <div *ngIf="pairingStatistics">
+          Pairings built: <b>{{pairingStatistics.formedPairingsForUpcomingRound}}
+          / {{pairingStatistics.maximumPairingsPossible}}</b>
+        </div>
+        <div class="whitespace-tiny"></div>
+        <div>
+          <button (click)="startRound()" color="primary" mat-raised-button>Start Round</button>
+        </div>
+      </div>
+
+      <div *ngIf="roundOngoing">
+        The round is now ongoing. The participants should talk with their partner now.
+      </div>
+
+      <div class="whitespace-small"></div>
+
+      <button (click)="closeEvent()" color="warn" mat-raised-button>End Event</button>
+    </ng-container>
+
+    <div *ngIf="closed" class="text-center">
+      The event is already finished.
+
+      <div class="whitespace-small"></div>
+
+      <button color="primary" mat-raised-button routerLink="/">Back to Main Menu</button>
+    </div>
+  </div>
+</div>

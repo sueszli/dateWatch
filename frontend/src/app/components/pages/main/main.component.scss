@@ -1,0 +1,67 @@
+@import "~src/styles/center";
+@import "~src/styles/whitespace";
+@import "~src/styles/color-palette";
+@import "~src/styles/drawer";
+
+
+// ======================== HEADER LOGO ========================
+$logo-size: 1.4rem;
+$logo-spacing: 0.2rem;
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    filter: invert(1);
+    width: $logo-size;
+    height: $logo-size;
+    margin-bottom: 0.1rem;
+  }
+
+  h1 {
+    font-size: $logo-size;
+    font-weight: 400;
+  }
+}
+
+// center logo font vertically
+.vertical-center {
+  display: flex;
+  align-items: center;
+
+  h1 {
+    margin: 0;
+    padding-left: $logo-spacing;
+  }
+}
+
+
+// ======================== INVITE CODE BUTTON ========================
+.invite-code {
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+  
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+  width: 65%;
+  display: flex;
+  justify-content: space-around;
+  
+  mat-icon {
+    margin-right: 0.5rem;
+  }
+}
+
+// ======================== TEXT STYLING ========================
+h2, p {
+  padding: 0;
+  margin: 0;
+}
+
+p {
+  font-weight: 300;
+}

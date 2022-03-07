@@ -1,0 +1,4 @@
+<div class="body-container">
+  <app-manual-event-code-entry (enteredAnEvent)="enteredAnEvent()" *ngIf="!isInEvent"></app-manual-event-code-entry>
+  <app-entrance-code-confirmed *ngIf="isInEvent"></app-entrance-code-confirmed>
+</div>
