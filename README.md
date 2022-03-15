@@ -1,4 +1,4 @@
-# dateWatch
+# DateWatch
 
 DateWatch is a tool for speed dating events - Here are just some of its features.
 
