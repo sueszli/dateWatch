@@ -2,7 +2,7 @@
 
 DateWatch is a web application / tool for managing and participating in speed dating events - Here are just some of its features:
 
-(Alternatively You can also check out the figma prototype file in this repository or just click on [this link](https://www.figma.com/file/VfUssciRWQJCU6zIxfyD3h/DateWatch-(Read-Only)?node-id=9%3A1033)
+(Alternatively You can also check out the figma prototype file in this repository or just click on [this link](https://www.figma.com/file/VfUssciRWQJCU6zIxfyD3h/DateWatch-(Read-Only))
 to get a general overview of this apps functionality)
 
 * Organizers and participants of speed dating events can register themselves and log in.
