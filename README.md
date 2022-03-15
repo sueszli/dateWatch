@@ -17,14 +17,12 @@ to get a general overview of this apps functionality)
   <img src="https://user-images.githubusercontent.com/61852663/158476399-f38d6e1a-a615-4c87-9f36-ffe7eef44a3b.png" width="200">
   <img src="https://user-images.githubusercontent.com/61852663/158476483-423f6aec-e985-4a71-957e-486c673daa0a.png" width="210">
 </p>
-
+<br><br>
 
 ## About the Team
-
 This web application was a project in the SEPM PR course of WS 2021 at the technical university of Vienna, under the supervision of professor Barbara Schuhmacher.
 
 The project received the Austrian grade "S1", equivalent to an "A+". 
-
 
 The development team consisted of 6 students, each with a budget of 200-300 work-hours.
 
@@ -37,6 +35,7 @@ All students contributed to the development, but had different roles and focusse
     <li>Richard :: Continous Integration</li>
     <li>Yahya :: Project manager</li>
 </ul>
+<br><br>
 
 ## Technical Features
 The used technology stack consisted of:
