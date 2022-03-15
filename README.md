@@ -45,4 +45,4 @@ The used technology stack consisted of:
 * H2 Database
 
 One challenge in designing this distributed system was synchronizing the mobile users in real time and their different relationships.
-To optimize the performance and synchronize the clock Server Sent Events SSE were used.
+To optimize the performance and synchronize the shared clock, Server Sent Events SSE were used in the backend.
