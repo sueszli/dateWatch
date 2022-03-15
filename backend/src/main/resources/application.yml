@@ -37,7 +37,7 @@ spring:
     host: smtp.gmail.com
     port: 587
     username: datewatch.test@gmail.com
-    password: sepm!scoo1
+    password: 123 #this is not the real password
     properties.mail.smtp:
       starttls:
         enable: true
