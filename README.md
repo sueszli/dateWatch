@@ -20,22 +20,11 @@ to get a general overview of this apps functionality)
 <br><br>
 
 ## About the Team
-This web application was a project in the SEPM PR course of WS 2021 at the technical university of Vienna, under the supervision of professor Barbara Schuhmacher.
+This web application was a project in the SEPM PR course of WS 2021 at the technical university of Vienna.
 
 The project received the Austrian grade "S1", equivalent to an "A+". 
 
 The development team consisted of 6 students, each with a budget of 200-300 work-hours.
-
-All students contributed to the development, but had different roles and focusses:
-<ul>
-    <li>Ruth :: Software Testing</li>
-    <li>Tobias :: technical Architect</li>
-    <li>Dmytro :: Frontend Designer</li>
-    <li>Patrick :: Documentation</li>
-    <li>Richard :: Continous Integration</li>
-    <li>Yahya :: Project manager</li>
-</ul>
-<br><br>
 
 ## Technical Features
 The used technology stack consisted of:
