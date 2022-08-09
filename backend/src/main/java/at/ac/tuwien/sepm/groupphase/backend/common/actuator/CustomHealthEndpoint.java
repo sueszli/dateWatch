@@ -1,4 +1,4 @@
-package at.ac.tuwien.sepm.groupphase.backend.actuator;
+package at.ac.tuwien.sepm.groupphase.backend.common.actuator;
 
 import javax.annotation.security.PermitAll;
 
