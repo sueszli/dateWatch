@@ -20,7 +20,7 @@ to get a general overview of this apps functionality)
 <br><br>
 
 ## About the Team
-The development team consisted of 6 students, each with a budget of 200-300 work-hours.
+The development team consisted of 6 students and each contributed about 200-300 hours to this project.
 
 ## Technical Features
 The used technology stack consisted of:
