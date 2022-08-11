@@ -1,8 +1,8 @@
 # DateWatch
 Make speed dating paperless!
 
-(Alternatively You can also check out the figma prototype file in this repository or just click on [this link](https://www.figma.com/file/VfUssciRWQJCU6zIxfyD3h/DateWatch-(Read-Only))
-to get a general overview of this apps functionality)
+Check out the figma prototype file in this repository or [take a look at the mockups here](https://www.figma.com/file/VfUssciRWQJCU6zIxfyD3h/DateWatch-(Read-Only))
+to get a general overview of this apps functionality.
 
 * Organizers and participants of speed dating events can register themselves and log in.
 * Organizers can plan ahead and register the events they want to hold and get a link and short code that they can share their events with.
