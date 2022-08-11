@@ -23,10 +23,10 @@ to get a general overview of this apps functionality)
 The development team consisted of 6 students and each contributed about 200-300 hours to this project.
 
 ## Technical Features
-The used technology stack consisted of:
-* Java Spring Boot
-* Angular, Bootstrap
-* H2 Database
+The used technology stack consists of:
+- Java Spring Boot
+- Angular, Bootstrap
+- H2 Database
 
 One challenge in designing this distributed system consisted of synchronizing the mobile users in real time and their different relationships.
 To optimize the performance and synchronize the shared clock, Server Sent Events SSE were used in the backend.
