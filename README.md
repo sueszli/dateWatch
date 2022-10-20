@@ -1,5 +1,5 @@
 # DateWatch
-Make speed dating paperless!
+Speed dating made paperless! (The predecessor to https://github.com/matchyOrg/matchy)
 
 Check out the [mockups](/documentation/mockups.pdf) to get a general overview of this apps functionality.
 
