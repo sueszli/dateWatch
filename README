@@ -1,0 +1,10 @@
+This proof-of-concept is the predecessor to our project "Matchy": https://github.com/matchyOrg/matchy
+
+---
+
+Datewatch was built with the following stack:
+
+- Java Spring-Boot -> to synchronize the shared clock between the users SSEs (server sent events) were used
+- TypeScript / Angular
+- Bootstrap CSS
+- H2 Database
