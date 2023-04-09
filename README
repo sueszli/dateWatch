@@ -4,7 +4,7 @@ This proof-of-concept is the predecessor to our project "Matchy": https://github
 
 Datewatch was built with the following stack:
 
-- Java Spring-Boot -> to synchronize the shared clock between the users SSEs (server sent events) were used
+- Java Spring-Boot -> to synchronize the shared clock between the users we used SSEs (server sent events)
 - TypeScript / Angular
 - Bootstrap CSS
 - H2 Database
