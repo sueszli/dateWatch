@@ -1,3 +1,7 @@
 This proof-of-concept was developed as part of a university project at TU Wien and serves as the precursor to "Matchy", which can be found at https://github.com/matchyOrg/matchy.
 
-The technology stack includes Angular and Bootstrap CSS for the frontend, Spring-Boot for the backend (utilizing server sent events to synchronize the shared clock between users), and the H2 Database.
+The technology stack includes:
+
+- Angular and Bootstrap CSS for the frontend
+- Spring-Boot for the backend (utilizing server sent events to synchronize the shared clock between users)
+- and the H2 Database.
